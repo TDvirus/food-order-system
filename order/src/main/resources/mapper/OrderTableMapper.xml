@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exampleone.order.mapper.OrderTableMapper">
+    <resultMap id="result" type="com.exampleone.order.entity.OrderTable">
+        <result property="orderId" column="order_id"/>
+        <result property="orderNumber" column="order_number"/>
+        <result property="productId" column="product_id"/>
+    </resultMap>
+
+    <select id="queryOrderByOrderid" resultMap="result">
+        select * from orderTable where order_id = #{orderId};
+    </select>
+
+    <insert id="insertOrder"  parameterType="com.exampleone.order.entity.OrderTable"
+    keyProperty="orderId" useGeneratedKeys="true">
+        insert into orderTable values(#{orderId},#{orderNumber},#{productId});
+    </insert>
+</mapper>
